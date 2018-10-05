@@ -48,7 +48,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 fatalError("Error while getting classification results.")
             }
             
-            print(results)
+            if let firstResult = results.first {
+                self.navigationItem.title = firstResult.identifier
+            } else {
+                self.navigationItem.title = "What is this nonsense?"
+            }
         }
         
         let handler = VNImageRequestHandler(ciImage: image)
